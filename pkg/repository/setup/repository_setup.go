@@ -1,4 +1,4 @@
-package init
+package setup
 
 import (
 	"fmt"
@@ -15,7 +15,7 @@ const (
 
 var DBInstance *sqlx.DB
 
-func InitDbConnection() {
+func DBConnectionSetup() {
 	psqlInfo := fmt.Sprintf("host=%s port=%d dbname=%s sslmode=disable", host, port, dbname)
 
 	dbInstance, err := sqlx.Open("postgres", psqlInfo)

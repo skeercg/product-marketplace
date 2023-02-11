@@ -4,15 +4,16 @@ import (
 	"github.com/gorilla/mux"
 	"log"
 	"net/http"
-	"product-marketplace/pkg/init"
+	init2 "product-marketplace/pkg/controller/setup"
+	"product-marketplace/pkg/repository/setup"
 )
 
 func main() {
-	init.InitDbConnection()
+	setup.DBConnectionSetup()
 	router := mux.NewRouter().StrictSlash(true)
 
-	init.InitProductApi(router)
-	init.InitAuthApi(router)
+	init2.ProductApiSetup(router)
+	init2.AuthApiSetup(router)
 
 	err := http.ListenAndServe(":8181", router)
 	if err != nil {

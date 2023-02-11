@@ -6,10 +6,11 @@ import (
 	"net/http"
 	"product-marketplace/pkg/model"
 	tokenService "product-marketplace/pkg/service"
+	"product-marketplace/pkg/service/interface"
 )
 
 type ProductController struct {
-	tokenService.ProductService
+	_interface.ProductService
 }
 
 func (controller *ProductController) GetProducts(w http.ResponseWriter, r *http.Request) {

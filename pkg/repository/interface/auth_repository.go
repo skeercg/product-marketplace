@@ -1,4 +1,4 @@
-package repository
+package _interface
 
 type AuthRepository interface {
 	AuthorizeUser(UserName, Password string) (string, error)

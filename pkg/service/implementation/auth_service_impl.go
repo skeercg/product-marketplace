@@ -1,12 +1,12 @@
-package service
+package implementation
 
 import (
 	"log"
-	"product-marketplace/pkg/repository"
+	"product-marketplace/pkg/repository/interface"
 )
 
 type AuthServiceImpl struct {
-	repository.AuthRepository
+	_interface.AuthRepository
 }
 
 func (a *AuthServiceImpl) LoginUser(UserName, Password string) (string, error) {

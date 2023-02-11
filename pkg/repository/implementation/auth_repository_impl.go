@@ -1,11 +1,11 @@
-package repository
+package implementation
 
 import (
 	"fmt"
 	_ "github.com/lib/pq"
 	"log"
-	"product-marketplace/pkg/init"
 	"product-marketplace/pkg/model"
+	"product-marketplace/pkg/repository/setup"
 	"product-marketplace/pkg/service"
 )
 
@@ -15,7 +15,7 @@ func (a *AuthRepositoryImpl) AuthorizeUser(UserName, Password string) (string, e
 	query := fmt.Sprintf("select * from users where username = $1 and password = $2")
 
 	var u model.User
-	err := init.DBInstance.Get(&u, query, UserName, Password)
+	err := setup.DBInstance.Get(&u, query, UserName, Password)
 
 	if err != nil {
 		log.Print(err)
@@ -28,7 +28,7 @@ func (a *AuthRepositoryImpl) AuthorizeUser(UserName, Password string) (string, e
 func (a *AuthRepositoryImpl) CreateUser(UserName, Password string) (string, error) {
 	query := fmt.Sprintf("insert into users (username, password) values ($1, $2) returning *")
 
-	row := init.DBInstance.QueryRowx(query, UserName, Password)
+	row := setup.DBInstance.QueryRowx(query, UserName, Password)
 
 	var u, p interface{}
 

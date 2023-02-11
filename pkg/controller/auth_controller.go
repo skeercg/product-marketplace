@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 	"product-marketplace/pkg/model"
-	sr "product-marketplace/pkg/service"
+	sr "product-marketplace/pkg/service/interface"
 )
 
 type AuthController struct {

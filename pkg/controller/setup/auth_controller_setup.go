@@ -1,15 +1,15 @@
-package init
+package setup
 
 import (
 	"github.com/gorilla/mux"
 	"product-marketplace/pkg/controller"
-	"product-marketplace/pkg/repository"
-	"product-marketplace/pkg/service"
+	implementation2 "product-marketplace/pkg/repository/implementation"
+	"product-marketplace/pkg/service/implementation"
 )
 
-func InitAuthApi(router *mux.Router) {
-	repository := new(repository.AuthRepositoryImpl)
-	service := new(service.AuthServiceImpl)
+func AuthApiSetup(router *mux.Router) {
+	repository := new(implementation2.AuthRepositoryImpl)
+	service := new(implementation.AuthServiceImpl)
 	service.AuthRepository = repository
 	controller := new(controller.AuthController)
 	controller.AuthService = service

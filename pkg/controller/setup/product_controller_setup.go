@@ -1,13 +1,13 @@
-package init
+package setup
 
 import (
 	"github.com/gorilla/mux"
 	storePresentation "product-marketplace/pkg/controller"
-	storeData "product-marketplace/pkg/repository"
-	storeDomain "product-marketplace/pkg/service"
+	storeData "product-marketplace/pkg/repository/implementation"
+	storeDomain "product-marketplace/pkg/service/implementation"
 )
 
-func InitProductApi(router *mux.Router) {
+func ProductApiSetup(router *mux.Router) {
 	repository := new(storeData.ProductRepositoryImpl)
 	service := new(storeDomain.ProductServiceImpl)
 	service.ProductRepository = repository

@@ -1,4 +1,4 @@
-package repository
+package _interface
 
 import (
 	en "product-marketplace/pkg/model"

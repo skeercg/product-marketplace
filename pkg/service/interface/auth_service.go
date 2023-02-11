@@ -1,4 +1,4 @@
-package service
+package _interface
 
 // AuthService Service that resides authorization
 // business logic

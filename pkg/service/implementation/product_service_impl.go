@@ -1,12 +1,12 @@
-package service
+package implementation
 
 import (
 	"product-marketplace/pkg/model"
-	"product-marketplace/pkg/repository"
+	"product-marketplace/pkg/repository/interface"
 )
 
 type ProductServiceImpl struct {
-	repository.ProductRepository
+	_interface.ProductRepository
 }
 
 func (p *ProductServiceImpl) SearchProduct(Params model.SearchProductParams) []model.Product {

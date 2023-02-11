@@ -1,4 +1,4 @@
-package service
+package _interface
 
 import (
 	"product-marketplace/pkg/model"
