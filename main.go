@@ -12,8 +12,8 @@ func main() {
 	setup.DBConnectionSetup()
 	router := mux.NewRouter().StrictSlash(true)
 
-	init2.ProductApiSetup(router)
-	init2.AuthApiSetup(router)
+	init2.ProductControllerSetup(router)
+	init2.AuthControllerSetup(router)
 
 	err := http.ListenAndServe(":8181", router)
 	if err != nil {

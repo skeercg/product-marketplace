@@ -1,4 +1,4 @@
-package service
+package implementation
 
 import (
 	"errors"
@@ -10,7 +10,10 @@ import (
 
 var JwtKey = []byte("23c9b16565955d2461a1103fbbdbffb9")
 
-func GenerateToken() (string, error) {
+type TokenServiceImpl struct {
+}
+
+func (service *TokenServiceImpl) GenerateToken() (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, &jwt.StandardClaims{
 		ExpiresAt: time.Now().Add(12 * time.Hour).Unix(),
 		IssuedAt:  time.Now().Unix(),
@@ -19,7 +22,7 @@ func GenerateToken() (string, error) {
 	return token.SignedString(JwtKey)
 }
 
-func IsTokenExpired(header string) bool {
+func (service *TokenServiceImpl) IsTokenExpired(header string) bool {
 	headerParts := strings.Split(header, " ")
 
 	if len(headerParts) != 2 {

@@ -6,10 +6,12 @@ import (
 	"log"
 	"product-marketplace/pkg/model"
 	"product-marketplace/pkg/repository/setup"
-	"product-marketplace/pkg/service"
+	_interface "product-marketplace/pkg/service/interface"
 )
 
-type AuthRepositoryImpl struct{}
+type AuthRepositoryImpl struct {
+	_interface.TokenService
+}
 
 func (a *AuthRepositoryImpl) AuthorizeUser(UserName, Password string) (string, error) {
 	query := fmt.Sprintf("select * from users where username = $1 and password = $2")
@@ -22,7 +24,7 @@ func (a *AuthRepositoryImpl) AuthorizeUser(UserName, Password string) (string, e
 		return "", err
 	}
 
-	return service.GenerateToken()
+	return a.TokenService.GenerateToken()
 }
 
 func (a *AuthRepositoryImpl) CreateUser(UserName, Password string) (string, error) {
@@ -37,5 +39,5 @@ func (a *AuthRepositoryImpl) CreateUser(UserName, Password string) (string, erro
 		return "", err
 	}
 
-	return service.GenerateToken()
+	return a.TokenService.GenerateToken()
 }

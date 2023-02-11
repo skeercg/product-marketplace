@@ -5,12 +5,12 @@ import (
 	"log"
 	"net/http"
 	"product-marketplace/pkg/model"
-	tokenService "product-marketplace/pkg/service"
 	"product-marketplace/pkg/service/interface"
 )
 
 type ProductController struct {
 	_interface.ProductService
+	_interface.TokenService
 }
 
 func (controller *ProductController) GetProducts(w http.ResponseWriter, r *http.Request) {
@@ -25,7 +25,7 @@ func (controller *ProductController) GetProducts(w http.ResponseWriter, r *http.
 
 	params.Token = r.Header.Get("Authorization")
 
-	if tokenService.IsTokenExpired(params.Token) {
+	if controller.TokenService.IsTokenExpired(params.Token) {
 		w.WriteHeader(401)
 		return
 	}
@@ -49,7 +49,7 @@ func (controller *ProductController) GradeProduct(w http.ResponseWriter, r *http
 
 	params.Token = r.Header.Get("Authorization")
 
-	if tokenService.IsTokenExpired(params.Token) {
+	if controller.TokenService.IsTokenExpired(params.Token) {
 		w.WriteHeader(401)
 		return
 	}
